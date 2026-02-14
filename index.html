@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Pardha Saradhi ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-
 <style>
 body {
     margin: 0;
@@ -14,11 +5,12 @@ body {
     background: radial-gradient(circle at top, #0f0c29, #1a1a2e);
     font-family: 'Poppins', sans-serif;
     color: white;
-    height: 100vh;
+    min-height: 100vh;   /* FIXED */
     overflow-x: hidden;
     text-align: center;
 }
 
+/* INTRO SECTION */
 .intro {
     position: fixed;
     width: 100%;
@@ -33,32 +25,12 @@ body {
 
 .intro h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 60px;
+    font-size: 75px;   /* BIG */
     color: #ff4da6;
+    text-shadow: 0 0 20px #ff1a75, 0 0 40px #ff1a75;
 }
 
-.intro button {
-    margin-top: 30px;
-    padding: 12px 30px;
-    border-radius: 30px;
-    border: none;
-    background: #ff1a75;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.container {
-    display: none;
-    margin-top: 150px;
-}
-
-h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 50px;
-    color: #ff4da6;
-}
-
+/* BUTTON STYLE */
 button {
     padding: 12px 30px;
     border-radius: 30px;
@@ -70,6 +42,22 @@ button {
     margin-top: 20px;
 }
 
+/* MAIN CONTAINER */
+.container {
+    display: none;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+/* MAIN TITLE */
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    color: #ff4da6;
+    text-shadow: 0 0 15px #ff1a75;
+}
+
+/* POPUP */
 .popup {
     position: fixed;
     width: 100%;
@@ -87,6 +75,7 @@ button {
     box-shadow: 0 0 40px #ff1a75;
 }
 
+/* ENVELOPE */
 .envelope {
     width: 300px;
     height: 200px;
@@ -114,23 +103,28 @@ button {
     transform-origin: top;
 }
 
+/* LETTER SECTION */
 .letter {
     display: none;
     background: #1a1a2e;
-    padding: 40px;
+    padding: 50px;
     border-radius: 20px;
     max-width: 800px;
     margin: 40px auto;
     box-shadow: 0 0 40px #ff1a75;
-    line-height: 1.8;
-    font-size: 18px;
+    line-height: 2;
+    font-size: 20px;
     text-align: left;
 }
 
 .letter h2 {
+    font-size: 65px;  /* BIG LETTER HEADING */
     text-align: center;
+    color: #ff4da6;
+    text-shadow: 0 0 20px #ff1a75, 0 0 40px #ff1a75;
 }
 
+/* ROSE PETALS */
 .petal {
     position: fixed;
     top: -20px;
@@ -145,119 +139,3 @@ button {
     }
 }
 </style>
-</head>
-
-<body>
-
-<audio autoplay loop>
-<source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
-</audio>
-
-<div class="intro" id="intro">
-    <h1>For Pardha Saradhi ❤️</h1>
-    <button onclick="startStory()">Enter My Heart 💖</button>
-</div>
-
-<div class="container" id="main">
-    <h2>I Have Something Important 💌</h2>
-    <button onclick="openPopup()">Click Here</button>
-</div>
-
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <h2>Will You Be Mine Forever? 💍</h2>
-        <button onclick="yesAnswer()">Yes 💖</button>
-        <button onclick="moveNo(this)">No 😅</button>
-    </div>
-</div>
-
-<div class="envelope" id="envelope" onclick="openEnvelope()"></div>
-
-<div class="letter" id="letter">
-    <h2>My Dearest Pardha Saradhi ❤️</h2>
-    <p id="typedText"></p>
-</div>
-
-<script>
-function startStory(){
-    document.getElementById("intro").style.display="none";
-    document.getElementById("main").style.display="block";
-}
-
-function openPopup(){
-    document.getElementById("popup").style.display="flex";
-}
-
-function yesAnswer(){
-    document.getElementById("popup").style.display="none";
-    document.getElementById("main").style.display="none";
-    document.getElementById("envelope").style.display="block";
-    createPetals();
-}
-
-function moveNo(btn){
-    btn.style.position="absolute";
-    btn.style.top=Math.random()*80+"%";
-    btn.style.left=Math.random()*80+"%";
-}
-
-function openEnvelope(){
-    let env=document.getElementById("envelope");
-    env.classList.add("open");
-    setTimeout(()=>{
-        env.style.display="none";
-        document.getElementById("letter").style.display="block";
-        typeLetter();
-    },1000);
-}
-
-const text = `My Dearest Pardha Saradhi ❤️,
-
-From the moment you came into my life, everything changed in the most beautiful way.
-You are not just someone special to me — you are the reason my heart smiles without a reason.
-
-Your smile is my peace.
-Your voice is my comfort.
-Your presence is my home.
-
-I admire your strength, your kindness, your heart, and the way you make everything feel lighter.
-With you, I feel safe.
-With you, I feel understood.
-With you, I feel complete.
-
-I don’t know what the future holds, but I know I want you in it.
-I want to stand beside you through success and struggle.
-I want to celebrate your victories and hold your hand during difficult days.
-
-If love is a journey, I want to walk it with you.
-If forever is a promise, I choose it with you.
-
-Today, tomorrow, and always —
-My heart belongs to you. 💖
-
-Forever yours. ❤️`;
-
-let i=0;
-function typeLetter(){
-    if(i<text.length){
-        document.getElementById("typedText").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeLetter,30);
-    }
-}
-
-function createPetals(){
-    setInterval(()=>{
-        let petal=document.createElement("div");
-        petal.className="petal";
-        petal.innerHTML="🌹";
-        petal.style.left=Math.random()*100+"vw";
-        petal.style.animationDuration=(5+Math.random()*5)+"s";
-        document.body.appendChild(petal);
-        setTimeout(()=>petal.remove(),10000);
-    },500);
-}
-</script>
-
-</body>
-</html>
