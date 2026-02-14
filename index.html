@@ -1,120 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Pardha Saradhi 💘</title>
+    <title>My Love Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Handwritten Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin: 0;
-  background: linear-gradient(to right, #ffccd5, #ffe6f2);
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow: hidden;
-}
+    <style>
+        body {
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            padding: 20px;
+            color: #5a0033;
+        }
 
-h1 {
-  margin-top: 60px;
-  color: #d10068;
-  font-size: 2.5em;
-}
+        .letter {
+            background: #fffaf0;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: auto;
+        }
 
-p {
-  color: #99004d;
-  font-size: 1.2em;
-}
+        h1 {
+            font-size: 32px;
+        }
 
-button {
-  padding: 15px 30px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin: 20px;
-  position: relative;
-}
+        p {
+            font-size: 22px;
+            line-height: 1.6;
+        }
 
-#yesBtn {
-  background: #ff4da6;
-  color: white;
-}
+        .gallery img {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+        }
 
-#noBtn {
-  background: #999;
-  color: white;
-  position: absolute;
-}
-
-iframe {
-  margin-top: 20px;
-  border-radius: 15px;
-}
-
-/* Floating Hearts */
-.heart {
-  position: absolute;
-  color: red;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
-}
-</style>
+        .signature {
+            margin-top: 20px;
+            font-size: 26px;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>💌 Pardha Saradhi, Will You Be My Valentine? 💌</h1>
-<p>You make my world beautiful every single day 💖</p>
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- Embedded YouTube Short -->
-<iframe width="300" height="170"
-src="https://www.youtube.com/embed/jaVkoeoMygg?autoplay=1&loop=1&playlist=jaVkoeoMygg"
-allow="autoplay; encrypted-media">
-</iframe>
+    <div class="letter">
+        <h1>My Dearest Pardha Saradhi 💖</h1>
 
-<br><br>
+        <p>
+            From the moment you came into my life, everything felt different…  
+            The world became softer, brighter, and full of meaning.  
+            Your smile is my favorite sunrise,  
+            your voice is my favorite melody.
+        </p>
 
-<button id="yesBtn" onclick="sayYes()">Yes 💖</button>
-<button id="noBtn" onmouseover="moveNo()">No 😢</button>
+        <p>
+            Every heartbeat of mine whispers your name.  
+            In your presence, I find peace.  
+            In your laughter, I find happiness.  
+            And in your love, I find my forever.
+        </p>
 
-<script>
-// YES button celebration
-function sayYes() {
-  document.body.innerHTML = "<h1>🎉 YAYYY Pardha Saradhi Said YES! 💕💍</h1><p>This is the happiest day ever 💖</p>";
-  
-  for (let i = 0; i < 120; i++) {
-    let confetti = document.createElement("div");
-    confetti.innerHTML = "💖";
-    confetti.style.position = "absolute";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.top = Math.random() * 100 + "vh";
-    confetti.style.fontSize = "20px";
-    document.body.appendChild(confetti);
-  }
-}
+        <p>
+            No matter where life takes us,  
+            I promise to stand beside you,  
+            to love you endlessly,  
+            and to choose you — every single day.
+        </p>
 
-// NO button runs away
-function moveNo() {
-  let btn = document.getElementById("noBtn");
-  btn.style.top = Math.random() * 80 + "vh";
-  btn.style.left = Math.random() * 80 + "vw";
-}
+        <div class="signature">
+            Forever Yours 💕
+        </div>
+    </div>
 
-// Floating hearts
-setInterval(() => {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => { heart.remove(); }, 6000);
-}, 500);
-</script>
+    <div class="gallery">
+        <img src="img1.jpg">
+        <img src="img2.jpg">
+        <img src="img3.jpg">
+        <img src="img4.jpg">
+        <img src="img5.jpg">
+    </div>
 
 </body>
 </html>
