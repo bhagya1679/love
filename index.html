@@ -90,6 +90,15 @@
         <img src="img4.jpg">
         <img src="img5.jpg">
     </div>
+    <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.body.addEventListener("click", function() {
+    document.getElementById("bgMusic").play();
+});
+</script>
 
 </body>
 </html>
