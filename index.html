@@ -11,34 +11,52 @@
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at top, #1a1a2e, #0f0c29);
+    background: radial-gradient(circle at top, #0f0c29, #1a1a2e);
     font-family: 'Poppins', sans-serif;
     color: white;
-    overflow: hidden;
     height: 100vh;
-    cursor: none;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.intro h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    color: #ff4da6;
+}
+
+.intro button {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #ff1a75;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: none;
+    margin-top: 150px;
 }
 
-h1 {
+h2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 55px;
+    font-size: 50px;
     color: #ff4da6;
-    text-shadow: 0 0 20px #ff1a75;
-}
-
-p {
-    max-width: 600px;
-    margin: 20px auto;
-    color: #ddd;
-    font-size: 18px;
 }
 
 button {
@@ -49,20 +67,14 @@ button {
     color: white;
     font-size: 18px;
     cursor: pointer;
-    transition: 0.3s;
+    margin-top: 20px;
 }
 
-button:hover {
-    background: #ff4da6;
-    box-shadow: 0 0 20px #ff4da6;
-}
-
-/* Popup */
 .popup {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
     display: none;
     justify-content: center;
     align-items: center;
@@ -72,57 +84,65 @@ button:hover {
     background: #1a1a2e;
     padding: 50px;
     border-radius: 20px;
-    text-align: center;
     box-shadow: 0 0 40px #ff1a75;
-    animation: scaleUp 0.6s ease;
 }
 
-@keyframes scaleUp {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.popup h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 45px;
-    color: #ff4da6;
-}
-
-/* Fireworks Canvas */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-/* Sparkle cursor */
-.sparkle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
+.envelope {
+    width: 300px;
+    height: 200px;
     background: #ff4da6;
-    border-radius: 50%;
-    pointer-events: none;
-    animation: sparkleFade 0.8s linear forwards;
+    margin: 50px auto;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    display: none;
 }
 
-@keyframes sparkleFade {
-    to { opacity: 0; transform: scale(2); }
-}
-
-/* Minimal Hearts */
-.heart {
+.envelope:before {
+    content: "";
     position: absolute;
-    font-size: 22px;
-    color: #ff1a75;
-    animation: float 12s infinite;
+    top: -100px;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 100px solid #ff1a75;
+    transition: 1s;
 }
 
-@keyframes float {
-    0% { transform: translateY(100vh); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-10vh); opacity: 0; }
+.envelope.open:before {
+    transform: rotateX(180deg);
+    transform-origin: top;
+}
+
+.letter {
+    display: none;
+    background: #1a1a2e;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 0 40px #ff1a75;
+    line-height: 1.8;
+    font-size: 18px;
+    text-align: left;
+}
+
+.letter h2 {
+    text-align: center;
+}
+
+.petal {
+    position: fixed;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.8;
+    }
 }
 </style>
 </head>
@@ -130,19 +150,17 @@ canvas {
 <body>
 
 <audio autoplay loop>
-<source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+<source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
 </audio>
 
-<canvas id="fireworks"></canvas>
+<div class="intro" id="intro">
+    <h1>For Pardha Saradhi ❤️</h1>
+    <button onclick="startStory()">Enter My Heart 💖</button>
+</div>
 
-<div class="container">
-    <h1>Pardha Saradhi ❤️</h1>
-    <p>
-        You are the calm in my chaos,  
-        the light in my darkness,  
-        and the love my heart has been waiting for.
-    </p>
-    <button onclick="openPopup()">I Have Something To Ask 💌</button>
+<div class="container" id="main">
+    <h2>I Have Something Important 💌</h2>
+    <button onclick="openPopup()">Click Here</button>
 </div>
 
 <div class="popup" id="popup">
@@ -153,54 +171,91 @@ canvas {
     </div>
 </div>
 
-<div class="heart" style="left:15%;">❤️</div>
-<div class="heart" style="left:80%; animation-delay:6s;">❤️</div>
+<div class="envelope" id="envelope" onclick="openEnvelope()"></div>
+
+<div class="letter" id="letter">
+    <h2>My Dearest Pardha Saradhi ❤️</h2>
+    <p id="typedText"></p>
+</div>
 
 <script>
-// Popup
-function openPopup() {
-    document.getElementById("popup").style.display = "flex";
+function startStory(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="block";
 }
 
-function yesAnswer() {
-    document.querySelector(".popup-content").innerHTML =
-    "<h2>Forever Starts Now ❤️</h2><p>You just made me the happiest 💖</p>";
-    startFireworks();
+function openPopup(){
+    document.getElementById("popup").style.display="flex";
 }
 
-function moveNo(btn) {
-    btn.style.position = "absolute";
-    btn.style.top = Math.random()*80 + "%";
-    btn.style.left = Math.random()*80 + "%";
+function yesAnswer(){
+    document.getElementById("popup").style.display="none";
+    document.getElementById("main").style.display="none";
+    document.getElementById("envelope").style.display="block";
+    createPetals();
 }
 
-// Sparkle Cursor
-document.addEventListener("mousemove", function(e){
-    let sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    sparkle.style.left = e.pageX + "px";
-    sparkle.style.top = e.pageY + "px";
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 800);
-});
+function moveNo(btn){
+    btn.style.position="absolute";
+    btn.style.top=Math.random()*80+"%";
+    btn.style.left=Math.random()*80+"%";
+}
 
-// Fireworks
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function openEnvelope(){
+    let env=document.getElementById("envelope");
+    env.classList.add("open");
+    setTimeout(()=>{
+        env.style.display="none";
+        document.getElementById("letter").style.display="block";
+        typeLetter();
+    },1000);
+}
 
-function startFireworks() {
-    for(let i=0;i<20;i++){
-        setTimeout(()=>{
-            let x = Math.random()*canvas.width;
-            let y = Math.random()*canvas.height/2;
-            ctx.beginPath();
-            ctx.arc(x,y,5,0,Math.PI*2);
-            ctx.fillStyle = "#ff4da6";
-            ctx.fill();
-        }, i*200);
+const text = `My Dearest Pardha Saradhi ❤️,
+
+From the moment you came into my life, everything changed in the most beautiful way.
+You are not just someone special to me — you are the reason my heart smiles without a reason.
+
+Your smile is my peace.
+Your voice is my comfort.
+Your presence is my home.
+
+I admire your strength, your kindness, your heart, and the way you make everything feel lighter.
+With you, I feel safe.
+With you, I feel understood.
+With you, I feel complete.
+
+I don’t know what the future holds, but I know I want you in it.
+I want to stand beside you through success and struggle.
+I want to celebrate your victories and hold your hand during difficult days.
+
+If love is a journey, I want to walk it with you.
+If forever is a promise, I choose it with you.
+
+Today, tomorrow, and always —
+My heart belongs to you. 💖
+
+Forever yours. ❤️`;
+
+let i=0;
+function typeLetter(){
+    if(i<text.length){
+        document.getElementById("typedText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeLetter,30);
     }
+}
+
+function createPetals(){
+    setInterval(()=>{
+        let petal=document.createElement("div");
+        petal.className="petal";
+        petal.innerHTML="🌹";
+        petal.style.left=Math.random()*100+"vw";
+        petal.style.animationDuration=(5+Math.random()*5)+"s";
+        document.body.appendChild(petal);
+        setTimeout(()=>petal.remove(),10000);
+    },500);
 }
 </script>
 
