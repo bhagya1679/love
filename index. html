@@ -1,132 +1,193 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-
-export default function ValentinePage() {
-  const [accepted, setAccepted] = useState(false);
-  const [openLetter, setOpenLetter] = useState(false);
-
-  useEffect(() => {
-    if (accepted) {
-      const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-      audio.loop = true;
-      audio.volume = 0.3;
-      audio.play();
-    }
-  }, [accepted]);
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-rose-200 to-red-300 flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Minimal Floating Hearts */}
-      <motion.div
-        className="absolute text-5xl"
-        initial={{ y: 600, x: -100, opacity: 0 }}
-        animate={{ y: -200, opacity: 1 }}
-        transition={{ duration: 8, repeat: Infinity }}
-      >
-        ❤️
-      </motion.div>
-
-      <motion.div
-        className="absolute text-4xl"
-        initial={{ y: 700, x: 200, opacity: 0 }}
-        animate={{ y: -200, opacity: 1 }}
-        transition={{ duration: 10, repeat: Infinity }}
-      >
-        💖
-      </motion.div>
-
-      {!accepted ? (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-2xl text-center"
-        >
-          <h1 className="text-3xl font-bold mb-4 text-rose-600">
-            Will You Be My Valentine?
-          </h1>
-          <p className="text-lg mb-6">From Pardha Saradhi ❤️</p>
-          <div className="flex gap-6 justify-center">
-            <Button
-              className="rounded-2xl px-6 py-2 text-lg"
-              onClick={() => setAccepted(true)}
-            >
-              Yes 💕
-            </Button>
-            <Button
-              variant="outline"
-              className="rounded-2xl px-6 py-2 text-lg"
-              onMouseEnter={(e) => {
-                e.target.style.position = "absolute";
-                e.target.style.top = Math.random() * 80 + "%";
-                e.target.style.left = Math.random() * 80 + "%";
-              }}
-            >
-              No 😢
-            </Button>
-          </div>
-        </motion.div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-lg mb-6">
-            She Said YES! 💍✨
-          </h1>
-
-          {/* Fireworks */}
-          <div className="absolute inset-0 pointer-events-none">
-            <motion.div
-              className="text-6xl"
-              initial={{ scale: 0 }}
-              animate={{ scale: [0, 1.5, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              🎆
-            </motion.div>
-          </div>
-
-          <Button
-            className="mt-4 rounded-2xl px-8 py-3 text-lg"
-            onClick={() => setOpenLetter(true)}
-          >
-            Open Romantic Letter 💌
-          </Button>
-
-          {openLetter && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="mt-6 bg-white p-8 rounded-2xl shadow-2xl max-w-md"
-            >
-              <h2 className="text-2xl font-semibold text-rose-600 mb-4">
-                My Dearest Love ❤️
-              </h2>
-              <p className="text-gray-700 leading-relaxed">
-                From the moment you walked into my life, everything became
-                brighter and more beautiful. Your smile is my sunshine, your
-                laughter is my favorite melody, and your love is my greatest
-                blessing. I promise to cherish you, support you, and love you
-                endlessly. Forever yours, Pardha Saradhi 💖
-              </p>
-            </motion.div>
-          )}
-        </motion.div>
-      )}
-
-      {/* Rose Petals Floating */}
-      {openLetter && (
-        <motion.div
-          className="absolute text-3xl"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 800, opacity: 1 }}
-          transition={{ duration: 6, repeat: Infinity }}
-        >
-          🌹
-        </motion.div>
-      )}
-    </div>
-  );
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pardha Saradhi ❤️ Valentine</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  height:100vh;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1a0026,#000814 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-align:center;
 }
+
+.container{
+  position:relative;
+  z-index:2;
+  padding:40px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 40px rgba(255,0,150,0.4);
+  max-width:90%;
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:42px;
+  margin-bottom:10px;
+  color:#ff4da6;
+  text-shadow:0 0 20px #ff1a75;
+}
+
+button{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.yes{background:#ff1a75;color:white}
+.no{background:white;color:#ff1a75;position:relative}
+button:hover{transform:scale(1.1)}
+
+#letterBox{
+  display:none;
+  margin-top:20px;
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  max-width:400px;
+  margin-left:auto;
+  margin-right:auto;
+  color:#444;
+}
+
+canvas{position:absolute;top:0;left:0}
+
+.petal{
+  position:absolute;
+  font-size:25px;
+  animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(100vh) rotate(360deg);opacity:0}
+}
+
+.heart{
+  position:absolute;
+  font-size:35px;
+  animation:float 8s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+</style></head>
+<body><canvas id="fireworks"></canvas>
+
+<div class="heart" style="left:25%">❤️</div>
+<div class="heart" style="left:75%;animation-duration:10s">❤️</div><div class="container">
+  <h1>Pardha Saradhi 💖</h1>
+  <p>Will You Be My Valentine?</p>
+  <button class="yes" onclick="acceptLove()">Yes 💕</button>
+  <button class="no" id="noBtn">No 😢</button>  <div id="letterBox">
+    <h2 style="color:#ff1a75;margin-bottom:10px">My Dearest Love ❤️</h2>
+    <p id="typedText"></p>
+  </div>
+</div><audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio><script>
+const noBtn=document.getElementById('noBtn');
+noBtn.addEventListener('mouseover',()=>{
+  noBtn.style.position='absolute';
+  noBtn.style.top=Math.random()*80+'%';
+  noBtn.style.left=Math.random()*80+'%';
+});
+
+function acceptLove(){
+  const music=document.getElementById('bgMusic');
+  music.volume=0;
+  music.play();
+  let fade=setInterval(()=>{
+    if(music.volume<0.5) music.volume+=0.05;
+    else clearInterval(fade);
+  },200);
+
+  startFireworks();
+  document.getElementById('letterBox').style.display='block';
+  typeLetter();
+  createPetals();
+}
+
+function typeLetter(){
+  const text="From the moment you entered my life, everything became magical. Your smile lights up my darkest nights, and your love is my greatest blessing. I promise to stand beside you, cherish you, and love you forever. Forever yours, Pardha Saradhi ❤️";
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      document.getElementById('typedText').innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,40);
+    }
+  }
+  typing();
+}
+
+function createPetals(){
+  setInterval(()=>{
+    const petal=document.createElement('div');
+    petal.classList.add('petal');
+    petal.innerHTML='🌹';
+    petal.style.left=Math.random()*100+'%';
+    document.body.appendChild(petal);
+    setTimeout(()=>petal.remove(),6000);
+  },400);
+}
+
+const canvas=document.getElementById('fireworks');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+
+function startFireworks(){
+  setInterval(()=>{
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height/2;
+    for(let i=0;i<100;i++){
+      particles.push({
+        x:x,
+        y:y,
+        radius:2,
+        color:`hsl(${Math.random()*360},100%,50%)`,
+        speedX:(Math.random()-0.5)*6,
+        speedY:(Math.random()-0.5)*6,
+        life:100
+      });
+    }
+  },800);
+}
+
+function animate(){
+  ctx.fillStyle='rgba(0,0,0,0.2)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,index)=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.fill();
+    p.x+=p.speedX;
+    p.y+=p.speedY;
+    p.life--;
+    if(p.life<=0) particles.splice(index,1);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script></body>
+</html>
